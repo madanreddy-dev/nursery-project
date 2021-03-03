@@ -1,0 +1,77 @@
+import copy
+print('Enter the design of the boquet - ex format BL2a2')
+print('Enter q to stop providing inputs')
+print('Enter the flower and its size ex aL,bS.. L-Large, S-Small')
+designs = []
+i = 'start'
+while i != 'q':
+    i = input('Enter the designs of the Boquet :- ')
+    if i != 'q':
+        designs.append(i)
+sdesigns = set(designs)
+
+flowers = {}
+i = 'start'
+while i != 'q':
+    i = input('Enter the flower and its size : ')
+    if i == 'q':
+        break
+    if i in flowers.keys():
+        
+        flowers[i] = flowers[i] + 1
+    else:
+        
+        flowers[i] = 1
+
+print('flowers 0:',flowers)
+m=0
+for des in sdesigns:
+    if des[1]=='S' or des[1]=='L':
+       m=1
+if m==0:
+    print("The design can have only small or large flowers")
+    
+n=0
+for key in flowers.keys():
+    if key[1]=='S' or key[1]=='L':
+        n=1
+if n==0:
+    print("The flowers can have only small or large sizes")
+
+bouquet = []
+tboq =copy.deepcopy(flowers)
+for key in tboq.keys():
+    tboq[key]=0
+
+#print('tboq 0:',tboq)
+    
+
+sum2=0
+cont=' '
+sum1=1
+for des in designs:
+   sum1=1
+   while(sum1!=0):
+    while(sum2<int(des[-1])):
+     for key in flowers.keys():
+        if((key[1]==des[1]) and (key[0] in des) and (sum2<int(des[-1])) and flowers[key]>0):
+          #print("1")
+          flowers[key]=flowers[key]-1
+          tboq[key]=tboq[key]+1
+          sum2=sum2+1
+          #print('flowers 1 :',flowers)
+          #print('tboq 1:',tboq)
+    cont=des[0]+des[1]
+    sum1=0
+    for key in tboq.keys():
+        if(tboq[key]!=0):
+            cont=cont+str(tboq[key])+key[0]
+            sum1=sum1+flowers[key]
+    bouquet.append(cont)
+    #print('flowers 2:',flowers)
+    #print('tboq 2:',tboq)
+    for key in tboq.keys():
+       tboq[key]=0
+    sum2=0
+    
+print("the bouquet generated is:",bouquet)
