@@ -30,7 +30,6 @@ while i != 'q':
 
 
     else:
-        
         flowers[i] = 1
 
 print('flowers 0:',flowers)
@@ -76,7 +75,10 @@ for des in designs:
    while(sum1!=0):
     while(sum2<int(des[-1])):
      for key in flowers.keys():
+         
         if((key[1]==des[1]) and (key[0] in des) and (sum2<int(des[-1])) and flowers[key]>0):
+            
+            
           #print("1")
           flowers[key]=flowers[key]-1
           tboq[key]=tboq[key]+1
@@ -86,12 +88,17 @@ for des in designs:
     cont=des[0]+des[1]
     sum1=0
     for key in tboq.keys():
+        
         if(tboq[key]!=0):
+            
+            
             cont=cont+str(tboq[key])+key[0]
             sum1=sum1+flowers[key]
     bouquet.append(cont)
     #print('flowers 2:',flowers)
     #print('tboq 2:',tboq)
+    
+    
     for key in tboq.keys():
        tboq[key]=0
     sum2=0
