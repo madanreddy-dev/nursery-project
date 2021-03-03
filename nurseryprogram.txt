@@ -1,3 +1,4 @@
+import copy
 print('Enter the design of the boquet - ex format BL2a2')
 print('Enter q to stop providing inputs')
 print('Enter the flower and its size ex aL,bS.. L-Large, S-Small')
